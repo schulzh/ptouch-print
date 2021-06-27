@@ -66,8 +66,8 @@ struct _pt_dev_info ptdevs[] = {
 	/* Note about the PT-E500: was reported by Jesse Becker with the
 	   remark that it also needs some padding (white pixels) */
 	{0x04f9, 0x2061, "PT-P700", 128, 180, FLAG_RASTER_PACKBITS|FLAG_P700_INIT},
-	{0x04f9, 0x2062, "PT-P750W", 128, 180, FLAG_RASTER_PACKBITS|FLAG_P700_INIT},
 	{0x04f9, 0x2064, "PT-P700 (PLite Mode)", 128, 180, FLAG_PLITE},
+	{0x04f9, 0x2062, "PT-P750W", 128, 180, FLAG_RASTER_PACKBITS|FLAG_P700_INIT},
 	{0x04f9, 0x2065, "PT-P750W (PLite Mode)", 128, 180, FLAG_PLITE},
 	{0x04f9, 0x2073, "PT-D450", 128, 180, FLAG_RASTER_PACKBITS},
 	/* Notes about the PT-D450: I'm unsure if print width really is 128px */
@@ -259,7 +259,7 @@ int ptouch_getstatus(ptouch_dev ptdev)
 			return -1;
 		}
 		tries++;
-		if (tries > 10) {
+		if (tries > 300) {
 			fprintf(stderr, _("timeout while waiting for status response\n"));
 			return -1;
 		}
